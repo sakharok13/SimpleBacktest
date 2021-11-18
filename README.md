@@ -1,2 +1,4 @@
 # SimpleBacktest
-Single-currency simple backtest
+Single-currency simple backtest with custom strategy.
+
+
