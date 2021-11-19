@@ -1,12 +1,8 @@
-class strategy(environment):
-    def __init__(self, look_back, market_data, current_state):
-        super().__init__(Env)
-        self.look_back = look_back
-        self.market_data = market_data
-        self.current_state = current_state
+def strategy(price, usd, eth):
 
-    def
-
-    def action(self):
-
-        return buy()
+  if usd - eth*price > 0:
+    return ((usd - eth * price) / 2 , 0)
+  elif usd - eth*price < 0:
+    return ( (usd - eth*price) / 2)
+  else:
+    return(0)
