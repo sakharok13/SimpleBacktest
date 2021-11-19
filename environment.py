@@ -65,6 +65,3 @@ class Env():
         plt.ylabel('USDC')
         plt.plot(self.portfolio_history)
         plt.show()
-
-
-
