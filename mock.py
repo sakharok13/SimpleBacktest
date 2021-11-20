@@ -1,6 +1,5 @@
 import numpy as np
 import matplotlib.pyplot as plt
-
 #just generating some random data
 
 def mock(length = 10**5, sigma = 10, start = 10000):

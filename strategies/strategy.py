@@ -1,5 +1,4 @@
 def strategy(price, usd, eth):
-
   if usd - eth*price > 0:
     return ((usd - eth * price) / 2 , 0)
   elif usd - eth*price < 0:
