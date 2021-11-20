@@ -1,10 +1,12 @@
 import matplotlib.pyplot as plt
 from mock import mock
 class Env():
-
+    # usd_start, eth_start are your initial tokens
+    # data[current_state] - starting price on the exchange
+    # change data = mock() to test your strategy on your own data
     def __init__(self, usd_start, eth_start, current_state=0, look_back=0, data = mock()):
-        assert(type(look_back) == int), 'Look_back should be an integer'
-        assert(type(current_state) == int), 'Current_state is just an index (timestamp) of your data'
+        assert(type(look_back) == int), 'look_back should be an integer'
+        assert(type(current_state) == int), 'current_state is just an index (timestamp) of your data'
 
         self.init_eth = eth_start
         self.init_usd = usd_start
@@ -26,8 +28,8 @@ class Env():
         self.state_upd()
 
     def portfolio_upd(self, amount):
-        assert(self.usd - amount <= 0), 'Negative USDC'
-        assert(self.eth + amount / self.current_price <= 0), 'Negative ETH'
+        assert(self.usd - amount <= 0), 'Negative USDC is not supported'
+        assert(self.eth + amount / self.current_price <= 0), 'Negative ETH is not supported'
 
         self.usd -= amount
         self.eth += amount / self.current_price
@@ -35,8 +37,8 @@ class Env():
     def get_portfolio(self):
         return (self.usd, self.eth)
 
-    def get_returns(self):
-        return (self.usd - self.init_usd) + (self.eth - self.init_eth) * self.current_price
+    def get_payoff(self):
+        return (self.usd) + (self.eth) * self.current_price
 
     def define_strategy(self, function):
         self.portfolio_history = []
@@ -50,9 +52,9 @@ class Env():
                                   self.usd,
                                   self.eth)
                 )
-                self.portfolio_history.append(self.get_returns())
+                self.portfolio_history.append(self.get_payoff())
         elif self.look_back > 0:
-            pass
+            assert(0 == 1), 'look_back > 0 is not supported'
         self.backtested = True
 
     def get_plot(self):
@@ -63,6 +65,3 @@ class Env():
         plt.ylabel('USDC')
         plt.plot(self.portfolio_history)
         plt.show()
-
-
-
