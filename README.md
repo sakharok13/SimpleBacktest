@@ -3,7 +3,7 @@ Single-currency simple backtest with custom strategy.
 
 Your strategy should be a function F : R^3 -> R
 
-example: your strategy just keeps the USDC part
+Example: your strategy just keeps the USDC part
 of portfolio equal to ETH part
 
 F(current_price = 100, usdc = 10000, eth = 2) -> 4900
@@ -19,16 +19,10 @@ python main.py --strategy strategy_name --usdc_start your_usdc --eth_start your_
 
 Env() has the following methods: 
 
-state_upd() - move to the next timestamp
-
-action(amount) - buy or sell amount of currency (depends on the sign)
-
-portfolio_upd() - update your portfolio
-
-get_payoff() - get the last state of portfolio
-
-define_strategy(func) - used to just define your strategy
-
-backtest() - run the whole thing 
-
+state_upd() - move to the next timestamp\
+action(amount) - buy or sell amount of currency (depends on the sign)\
+portfolio_upd() - update your portfolio\
+get_payoff() - get the last state of portfolio\
+define_strategy(func) - used to just define your strategy\
+backtest() - run the whole thing \
 get_plot - plot of your portfolio through time
