@@ -1,7 +1,6 @@
 import argparse
 from environment import Env
 import strategies
-
 def _parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument(
@@ -33,10 +32,13 @@ def _parse_args():
 
 def main():
     args = _parse_args()
-    environ = Env(args.usdc_start, args.eth_start)
+    environ = Env(float(args.usdc_start), float(args.eth_start))
     environ.define_strategy(getattr(strategies, args.strategy))
     environ.backtest()
     environ.get_plot()
+
+if __name__ == '__main__':
+    main()
 
 
 

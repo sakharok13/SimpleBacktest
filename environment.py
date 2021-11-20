@@ -28,8 +28,8 @@ class Env():
         self.state_upd()
 
     def portfolio_upd(self, amount):
-        assert(self.usd - amount <= 0), 'Negative USDC is not supported'
-        assert(self.eth + amount / self.current_price <= 0), 'Negative ETH is not supported'
+        assert(self.usd - amount >= 0), 'Negative USDC is not supported'
+        assert(self.eth + amount / self.current_price >= 0), 'Negative ETH is not supported'
 
         self.usd -= amount
         self.eth += amount / self.current_price
@@ -59,9 +59,9 @@ class Env():
 
     def get_plot(self):
         assert (self.backtested == True), 'You should run backtesting first'
-        plt.figure(figsize=(10, 5))
+        plt.figure(figsize=(10, 8))
         plt.title('Portfolio value')
         plt.xlabel('Timestamps')
         plt.ylabel('USDC')
-        plt.plot(self.portfolio_history)
+        plt.plot(self.portfolio_history, 'k')
         plt.show()
